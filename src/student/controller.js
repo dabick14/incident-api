@@ -37,7 +37,7 @@ const insertData = async (client_id, incident_desc, city, country, weather) => {
       country,
       weather,
     ])
-    pool.end()
+
     return result.rows
   } catch (error) {
     console.error('Error executing query', err.stack)
@@ -47,13 +47,14 @@ const insertData = async (client_id, incident_desc, city, country, weather) => {
 const getIncidents = async (_req, res) => {
   try {
     const result = await pool.query(queries.getAllIncidents)
-    pool.end()
+
     res.status(200).json(result.rows)
   } catch (error) {
     console.error('Error executing query', err.stack)
     res.status(500).json('Oops! Something went wrong')
   }
 }
+
 module.exports = {
   addIncident,
   getIncidents,
