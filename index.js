@@ -1,4 +1,5 @@
 const express = require('express')
+const serverless = require('serverless-http')
 const incidentRoutes = require('./src/student/incidentRoutes')
 const app = express()
 const PORT = 8080
@@ -11,3 +12,6 @@ app.listen(PORT, () =>
 )
 
 app.use('/api/v1/incident', incidentRoutes)
+
+module.exports = app
+module.exports.handler = serverless(app)
