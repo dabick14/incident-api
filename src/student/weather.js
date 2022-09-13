@@ -11,8 +11,10 @@ const getWeather = async (city) => {
     return JSON.stringify(object.data)
   } catch (error) {
     if (error.response) {
-      console.log(error.response.data)
-      return { error: 404, message: error.response.data }
+      return {
+        error: error.response?.data?.cod,
+        message: error.response?.data?.message,
+      }
     }
   }
 
